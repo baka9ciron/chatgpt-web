@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OhanaSaita - 个人网站</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">OhanaSaita</div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#projects">项目</a></li>
+                <li><a href="#guestbook">留言板</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>你好，我是 OhanaSaita ✨</h1>
+            <p>一般通过男性 | 目标是成为神 | 正在修行中...</p>
+            <a href="#projects" class="btn">查看我的项目</a>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>我的项目</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>个人网站</h3>
+                    <p>使用 HTML、CSS 和 JavaScript 构建的现代个人网站，展示个人信息和项目作品。包含实时留言板功能。</p>
+                    <a href="https://github.com/baka9ciron/OhanaSaita" target="_blank">查看代码</a>
+                </div>
+                <div class="project-card">
+                    <h3>项目 2</h3>
+                    <p>正在开发中，敬请期待...</p>
+                    <a href="#">了解更多</a>
+                </div>
+                <div class="project-card">
+                    <h3>项目 3</h3>
+                    <p>正在开发中，敬请期待...</p>
+                    <a href="#">了解更多</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<section>
+  <h2>AI聊天</h2>
+
+  <div id="chat-box" style="height:300px; overflow:auto; border:1px solid #ccc; padding:10px;"></div>
+
+  <input id="input" placeholder="输入问题">
+  <button onclick="send()">发送</button>
+</section>
+
+<script>
+async function send() {
+  const text = document.getElementById("input").value;
+
+  const res = await fetch("https://chatgpt-web-ldxk.vercel.app/api/chat", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ message: text })
+  });
+
+  const data = await res.json();
+
+  document.getElementById("chat-box").innerHTML +=
+    "<p>你：" + text + "</p>" +
+    "<p>AI：" + data.reply + "</p>";
+}
+</script>
+    <section id="guestbook" class="guestbook">
+        <div class="container">
+            <h2>✍️ 留言板</h2>
+            <p>欢迎在下方留下你的信息和建议！</p>
+            
+            <div class="guestbook-form">
+                <input type="text" id="nameInput" placeholder="请输入你的名字" maxlength="20">
+                <textarea id="messageInput" placeholder="请输入你的留言" maxlength="200" rows="4"></textarea>
+                <button onclick="addMessage()" class="btn">发送留言</button>
+            </div>
+
+            <div class="guestbook-messages" id="guestbookMessages">
+                <div class="message-item">
+                    <div class="message-header">
+                        <strong>访客</strong>
+                        <span class="message-time">欢迎来访！</span>
+                    </div>
+                    <p class="message-text">这是一个示例留言，你也可以留下你的信息～</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>联系我</h2>
+            <p>欢迎通过以下方式与我联系：</p>
+            <div class="contact-links">
+                <a href="https://github.com/baka9ciron" target="_blank" class="contact-link">GitHub 主页</a>
+                <a href="mailto:your-email@example.com" class="contact-link">邮件</a>
+                <a href="https://github.com/baka9ciron" target="_blank" class="contact-link">我的项目</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 OhanaSaita. 目标是成为神 ✨</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
